@@ -75,6 +75,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/movies/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/series/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/details/**").permitAll()
+                        .requestMatchers("/api/game/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception ->

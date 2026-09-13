@@ -26,6 +26,7 @@ public class MovieController {
     }
     @GetMapping("/trending")
     public SearchMovieResponse getTrendingMovies(){
+
         return movieService.getTrendingMovies();
     }
 }

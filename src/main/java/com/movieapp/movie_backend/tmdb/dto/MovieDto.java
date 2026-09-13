@@ -1,15 +1,20 @@
 package com.movieapp.movie_backend.tmdb.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 public class MovieDto {
     private Integer id;
     private String title;
     private String overview;
     @JsonProperty("poster_path")
     private String posterPath;
+    @JsonProperty("backdrop_path")
+    private String backdropPath;
     @JsonProperty("release_date")
     private String releaseDate;
     @JsonProperty("vote_average")
     private Double voteAverage;
+    private List<GenreDto> genres;
+    private Integer runtime;
 
     public Integer getId() {
         return id;
@@ -57,5 +62,27 @@ public class MovieDto {
 
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
+    }
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
+    public List<GenreDto> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<GenreDto> genres) {
+        this.genres = genres;
+    }
+
+    public Integer getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(Integer runtime) {
+        this.runtime = runtime;
     }
 }

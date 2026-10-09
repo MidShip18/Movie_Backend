@@ -58,6 +58,7 @@ public class RatingService {
         rating.setFeelScore(request.getFeelScore());
         rating.setStoryScore(request.getStoryScore());
         rating.setImpactScore(request.getImpactScore());
+        rating.setRewatchable(request.getRewatchable());
 
         Rating savedRating = ratingRepository.save(rating);
         DetailsDto details = tmdbClient.getDetails(
@@ -95,6 +96,7 @@ public class RatingService {
         response.setFeelScore(savedRating.getFeelScore());
         response.setStoryScore(savedRating.getStoryScore());
         response.setImpactScore(savedRating.getImpactScore());
+        response.setRewatchable(rating.getRewatchable());
 
         return response;
     }
@@ -166,6 +168,9 @@ public class RatingService {
         List<Object[]> genreAverages =
                 genreRatingRepository.getGenreAverages(tmdbId, mediaType);
 
+        Long rewatchableCount =
+                ratingRepository.getRewatchableCount(tmdbId, mediaType);
+
         List<GenreRatingSummaryResponse> genreResponses =
                 new ArrayList<>();
 
@@ -188,6 +193,9 @@ public class RatingService {
             response.setTmdbId(tmdbId);
             response.setMediaType(mediaType);
             response.setTotalRatings(0L);
+            response.setRewatchableCount(0L);
+            response.setRewatchablePercentage(0.0);
+
 
             return response;
         }
@@ -205,6 +213,14 @@ public class RatingService {
         response.setAverageImpactScore(averageImpact);
         response.setOverallRating(overallRating);
         response.setGenreRatings(genreResponses);
+        response.setRewatchableCount(rewatchableCount);
+
+        Double rewatchablePercentage =
+                totalRatings == 0
+                        ? 0.0
+                        : (rewatchableCount * 100.0) / totalRatings;
+
+        response.setRewatchablePercentage(rewatchablePercentage);
 
         return response;
     }

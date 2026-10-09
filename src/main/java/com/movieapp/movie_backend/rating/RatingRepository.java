@@ -50,4 +50,13 @@ public interface RatingRepository extends JpaRepository<Rating,Integer> {
             @Param("tmdbId") Integer tmdbId,
             @Param("mediaType") String mediaType
     );
+
+    @Query("""
+    SELECT COUNT(r)
+    FROM Rating r
+    WHERE r.tmdbId = :tmdbId
+    AND r.mediaType = :mediaType
+    AND r.rewatchable = true
+""")
+    Long getRewatchableCount(Integer tmdbId, String mediaType);
 }

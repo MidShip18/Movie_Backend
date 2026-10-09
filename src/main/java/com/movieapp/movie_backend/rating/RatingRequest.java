@@ -28,4 +28,6 @@ public class RatingRequest {
     @Max(5)
     private Integer impactScore;
 
+    private Boolean rewatchable;
+
 }

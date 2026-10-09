@@ -20,4 +20,7 @@ public class RatingSummaryResponse {
 
     private Double overallRating;
     private List<GenreRatingSummaryResponse> genreRatings;
+
+    private Long rewatchableCount;
+    private Double rewatchablePercentage;
 }

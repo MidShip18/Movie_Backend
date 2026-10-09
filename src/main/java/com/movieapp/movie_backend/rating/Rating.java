@@ -20,4 +20,5 @@ public class Rating {
     private Integer feelScore;
     private Integer storyScore;
     private Integer impactScore;
+    private Boolean rewatchable;
 }
